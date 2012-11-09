@@ -11,5 +11,6 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <copyright>Copyright (c) 2011, 2012 Convekta Ltd.</copyright>
+	<tags>AspNetMvc Mvc Links</tags>
   </metadata>
 </package>
