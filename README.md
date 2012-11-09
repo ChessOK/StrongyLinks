@@ -3,6 +3,22 @@ StrongyLinks
 
 Provides strongly-typed extensions methods for `UrlHelper`, `AjaxHelper` and `HtmlHelper` classes.
 
+Why to use?
+------------
+**Pros**
+* Changed action parameter name? There is no need to change the links code.
+* Using [MvcBuildViews](http://stackoverflow.com/a/542944/1317575)? Get compile time safety when 
+adding new parameters and deleting existing.
+* Like Rename refactoring? Use it.
+* Always forget controller action names and parameters? No problem.
+* You can move controllers to areas without need to add new "area" parameter for links.
+
+**Cons**
+Performance penalties only (see below).
+
+But you can use strongly-typed at the first, dynamic stage of the project and then rewrite 
+the slowest pages.
+
 Installation
 -------------
 
@@ -76,22 +92,6 @@ enclose statements in parenthesis:
 ```
 @(Url.Action<HomeController>(c => c.Index()))
 ```
-
-Why to use?
-------------
-**Pros**
-* Changed action parameter name? There is no need to change the links code.
-* Using [MvcBuildViews](http://stackoverflow.com/a/542944/1317575)? Get compile time safety when 
-adding new parameters and deleting existing.
-* Like Rename refactoring? Use it.
-* Always forget controller action names and parameters? No problem.
-* You can move controllers to areas without need to add new "area" parameter for links.
-
-**Cons**
-Performance penalties only (see below).
-
-But you can use strongly-typed at the first, dynamic stage of the project and then rewrite 
-the slowest pages.
 
 Performance
 --------------
