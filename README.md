@@ -3,7 +3,7 @@ StrongyLinks
 
 Provides strongly-typed extensions methods for `UrlHelper`, `AjaxHelper` and `HtmlHelper` classes.
 
-Why to use?
+Why use it?
 ------------
 **Pros**
 * Changed action parameter name? There is no need to change the links code.
