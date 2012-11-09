@@ -13,4 +13,7 @@
     <copyright>Copyright (c) 2011, 2012 Convekta Ltd.</copyright>
 	<tags>AspNetMvc Mvc Links</tags>
   </metadata>
+  <files>
+	<file src="..\content\Views\Web.config.transform" target="content\Views\Web.config.transform" />
+  </files>
 </package>
