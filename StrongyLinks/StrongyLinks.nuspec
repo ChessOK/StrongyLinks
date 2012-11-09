@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>StrongyLinks</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>odinserj</authors>
+    <owners>Convekta Ltd.</owners>
+    <licenseUrl>https://github.com/ChessOK/StrongyLinks/raw/master/LICENSE.txt</licenseUrl>
+    <projectUrl>https://github.com/ChessOK/StrongyLinks/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <copyright>Copyright (c) 2011, 2012 Convekta Ltd.</copyright>
+  </metadata>
+</package>
