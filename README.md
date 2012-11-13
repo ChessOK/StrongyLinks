@@ -15,10 +15,19 @@ adding new parameters and deleting existing.
 * You can move controllers to areas without need to add new "area" parameter for links.
 
 **Cons.**
-Performance penalties only (see below).
+Slight performance penalty (see below).
 
-But you can use strongly-typed at the first, dynamic stage of the project and then rewrite 
-the slowest pages.
+Performance
+--------------
+Simple performance comparison between default helpers and strongly-typed helpers 
+give us the following results for URL generation:
+
+* **Parameterless action** — ~1.7x slower (with "area" property set)
+* **1 constant parameter** — ~1.7x slower
+* **1 complex parameter** — ~3x slower
+
+StrongyLinks use CachedExpressionCompiler from Microsoft.Web.Mvc to obtain
+parameters values.
 
 Installation
 -------------
@@ -92,17 +101,3 @@ enclose statements in parenthesis:
 
 ```
 @(Url.Action<HomeController>(c => c.Index()))
-```
-
-Performance
---------------
-Simple performance comparison between default helpers and strongly-typed helpers 
-give us the following results for URL generation (or degeneration ;)):
-
-* **Parameterless action** — ~4x slower
-* **1 constant parameter** — ~7x slower
-* **1 function parameter** — ~16x slower
-
-More parameters, the worse the result. The reason of such degradation is that StrongyLinks use straight 
-[Delegate.DynamicInvoke](https://github.com/ChessOK/StrongyLinks/blob/master/StrongyLinks/Internals/RoutesHelper.cs#L62) 
-instead of ExpressionVisitor. So, performance can be better in version 1.1 :)

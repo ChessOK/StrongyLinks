@@ -3,7 +3,6 @@ using System.Linq.Expressions;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
-using System.Web.Routing;
 
 using ChessOk.StrongyLinks.Internals;
 
@@ -17,12 +16,8 @@ namespace ChessOk.StrongyLinks
             AjaxOptions options)
             where TController : Controller
         {
-            RouteValueDictionary routeValues;
-            string controllerName;
-            string actionName;
-            controllerAction.GetRouteParameters(out actionName, out controllerName, out routeValues);
-
-            return helper.BeginForm(actionName, controllerName, routeValues, options);
+            var parameters = controllerAction.GetRouteParameters();
+            return helper.BeginForm(parameters.ActionName, parameters.ControllerName, parameters.RouteValues, options);
         }
 
         public static MvcHtmlString ActionLink<TController>(
@@ -33,13 +28,11 @@ namespace ChessOk.StrongyLinks
             object htmlAttributes = null)
             where TController : Controller
         {
-            RouteValueDictionary routeValues;
-            string controllerName;
-            string actionName;
-            controllerAction.GetRouteParameters(out actionName, out controllerName, out routeValues);
+            var parameters = controllerAction.GetRouteParameters();
             var attributes = HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
 
-            return helper.ActionLink(linkText, actionName, controllerName, routeValues, options, attributes);
+            return helper.ActionLink(linkText, parameters.ActionName, parameters.ControllerName,
+                parameters.RouteValues, options, attributes);
         }
 
         public static MvcForm BeginForm<TController>(this AjaxHelper helper,
@@ -48,12 +41,9 @@ namespace ChessOk.StrongyLinks
                                                      object htmlAttributes)
             where TController : Controller
         {
-            RouteValueDictionary routeValues;
-            string controllerName;
-            string actionName;
-            controllerAction.GetRouteParameters(out actionName, out controllerName, out routeValues);
-
-            return helper.BeginForm(actionName, controllerName, null, ajaxOptions, htmlAttributes);
+            var parameters = controllerAction.GetRouteParameters();
+            var attributes = HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
+            return helper.BeginForm(parameters.ActionName, parameters.ControllerName, parameters.RouteValues, ajaxOptions, attributes);
         }
     }
 }

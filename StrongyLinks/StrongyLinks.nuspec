@@ -10,10 +10,10 @@
     <projectUrl>https://github.com/ChessOK/StrongyLinks/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <copyright>Copyright (c) 2011, 2012 Convekta Ltd.</copyright>
-	<tags>AspNetMvc Mvc Links</tags>
+    <copyright>Copyright (c) 2012 Convekta Ltd.</copyright>
+    <tags>AspNetMvc Mvc Strongly-Typed Url Links Helpers View</tags>
   </metadata>
   <files>
-	<file src="..\content\Views\Web.config.transform" target="content\Views\Web.config.transform" />
+    <file src="..\content\Views\Web.config.transform" target="content\Views\Web.config.transform" />
   </files>
 </package>

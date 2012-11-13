@@ -10,7 +10,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A647BF
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrongyLinks.Tests", "StrongyLinks.Tests\StrongyLinks.Tests.csproj", "{C54465C6-41A3-4813-BAF4-FC816B6DA87E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0017FBAD-0029-41D7-AEFF-439BAA954C59}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		StrongyLinks1.vsmdi = StrongyLinks1.vsmdi
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = StrongyLinks1.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -20,6 +32,10 @@ Global
 		{0B34A57B-06E4-4295-86E5-42D72AFF6F0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B34A57B-06E4-4295-86E5-42D72AFF6F0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B34A57B-06E4-4295-86E5-42D72AFF6F0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C54465C6-41A3-4813-BAF4-FC816B6DA87E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C54465C6-41A3-4813-BAF4-FC816B6DA87E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C54465C6-41A3-4813-BAF4-FC816B6DA87E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C54465C6-41A3-4813-BAF4-FC816B6DA87E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

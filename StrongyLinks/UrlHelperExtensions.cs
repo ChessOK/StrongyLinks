@@ -14,12 +14,8 @@ namespace ChessOk.StrongyLinks
             Expression<Func<TController, ActionResult>> controllerAction)
             where TController : Controller
         {
-            RouteValueDictionary routeValues;
-            string controllerName;
-            string actionName;
-            controllerAction.GetRouteParameters(out actionName, out controllerName, out routeValues);
-
-            return helper.Action(actionName, controllerName, routeValues);
+            var parameters = controllerAction.GetRouteParameters();
+            return helper.Action(parameters.ActionName, parameters.ControllerName, parameters.RouteValues);
         }
 
         public static string AbsoluteAction<TController>(
@@ -27,12 +23,8 @@ namespace ChessOk.StrongyLinks
             Expression<Func<TController, ActionResult>> controllerAction, string scheme)
             where TController : Controller
         {
-            RouteValueDictionary routeValues;
-            string controllerName;
-            string actionName;
-            controllerAction.GetRouteParameters(out actionName, out controllerName, out routeValues);
-
-            return helper.Action(actionName, controllerName, routeValues, scheme, null);
+            var parameters = controllerAction.GetRouteParameters();
+            return helper.Action(parameters.ActionName, parameters.ControllerName, parameters.RouteValues, scheme, null);
         }
     }
 }

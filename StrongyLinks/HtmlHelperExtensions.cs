@@ -18,24 +18,17 @@ namespace ChessOk.StrongyLinks
             IDictionary<string, object> htmlAttributes = null)
             where TController : Controller
         {
-            RouteValueDictionary routeValues;
-            string controllerName;
-            string actionName;
-            controllerAction.GetRouteParameters(out actionName, out controllerName, out routeValues);
-
-            return helper.ActionLink(linkText, actionName, controllerName, routeValues, htmlAttributes);
+            var parameters = controllerAction.GetRouteParameters();
+            return helper.ActionLink(linkText, parameters.ActionName,
+                parameters.ControllerName, parameters.RouteValues, htmlAttributes);
         }
 
         public static MvcHtmlString Action<TController>(this HtmlHelper helper,
                                                         Expression<Func<TController, ActionResult>> controllerAction)
             where TController : Controller
         {
-            RouteValueDictionary routeValues;
-            string controllerName;
-            string actionName;
-            controllerAction.GetRouteParameters(out actionName, out controllerName, out routeValues);
-
-            return helper.Action(actionName, controllerName, routeValues);
+            var parameters = controllerAction.GetRouteParameters();
+            return helper.Action(parameters.ActionName, parameters.ControllerName, parameters.RouteValues);
         }
 
         public static MvcForm BeginForm<TController>(this HtmlHelper helper,
@@ -44,12 +37,10 @@ namespace ChessOk.StrongyLinks
                                                      object htmlAttributes = null)
             where TController : Controller
         {
-            RouteValueDictionary routeValues;
-            string controllerName;
-            string actionName;
-            controllerAction.GetRouteParameters(out actionName, out controllerName, out routeValues);
-
-            return helper.BeginForm(actionName, controllerName, method, htmlAttributes);
+            var parameters = controllerAction.GetRouteParameters();
+            var attributes = HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
+            return helper.BeginForm(parameters.ActionName, parameters.ControllerName,
+                parameters.RouteValues, method, attributes);
         }
     }
 }
