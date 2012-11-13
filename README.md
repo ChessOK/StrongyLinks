@@ -22,9 +22,9 @@ Performance
 Simple performance comparison between default helpers and strongly-typed helpers 
 give us the following results for URL generation:
 
-* **Parameterless action** — ~1.7x slower (with "area" property set)
-* **1 constant parameter** — ~1.7x slower
-* **1 complex parameter** — ~3x slower
+* **Parameterless action** — ~1.3x slower (with "area" property set)
+* **1 constant parameter** — ~1.3x slower
+* **1 complex parameter** — ~2.2x slower
 
 StrongyLinks use CachedExpressionCompiler from Microsoft.Web.Mvc to obtain
 parameters values.
