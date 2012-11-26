@@ -47,13 +47,13 @@ namespace ChessOk.StrongyLinks.Internals
             {
                 var value = GetArgumentValue(member.Arguments[i]);
 
-                // RouteValueDictionary can't work with collections, but we can teach it.
+                // RouteValueDictionary can't work with arrays, but we can teach it.
                 // It looks a bit messy in the URL, but it works.
-                var enumerable = value as IEnumerable;
-                if (enumerable != null)
+                var array = value as Array;
+                if (array != null)
                 {
                     var index = 0;
-                    foreach (var o in enumerable)
+                    foreach (var o in array)
                     {
                         routeValues.Add(string.Format("{0}[{1}]", argumentNames[i].Name, index++), o);
                     }
