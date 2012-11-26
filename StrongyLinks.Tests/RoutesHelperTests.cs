@@ -17,21 +17,21 @@ namespace StrongyLinks.Tests
         [TestMethod]
         public void ShouldUseExactTypeNameAsControllerName_IfSuffixIsAbsent()
         {
-            var p = RoutesHelper.GetRouteParameters<AnotherFake>(x => x.Index());
+            var p = RoutesHelper.GetRouteParameters<AnotherFakeController>(x => x.Index());
             Assert.AreEqual("AnotherFake", p.ControllerName);
         }
 
         [TestMethod]
         public void ShouldUseMethodName_WhenThereAreNoAttributes()
         {
-            var p = RoutesHelper.GetRouteParameters<AnotherFake>(x => x.Index());
+            var p = RoutesHelper.GetRouteParameters<AnotherFakeController>(x => x.Index());
             Assert.AreEqual("Index", p.ActionName);
         }
 
         [TestMethod]
         public void ShouldUseActionNameValue_IfAttributeHasBeenApplied()
         {
-            var p = RoutesHelper.GetRouteParameters<AnotherFake>(x => x.YetAnotherIndex());
+            var p = RoutesHelper.GetRouteParameters<AnotherFakeController>(x => x.YetAnotherIndex());
             Assert.AreEqual("Index", p.ActionName);
         }
 
@@ -46,7 +46,7 @@ namespace StrongyLinks.Tests
         [TestMethod]
         public void ShouldUseAreaNameAttribute()
         {
-            var p = RoutesHelper.GetRouteParameters<AnotherFake>(x => x.Index());
+            var p = RoutesHelper.GetRouteParameters<AnotherFakeController>(x => x.Index());
             Assert.AreEqual("FakeArea", p.RouteValues["area"]);
         }
 
@@ -70,6 +70,13 @@ namespace StrongyLinks.Tests
             var p = RoutesHelper.GetRouteParameters<FakeController>(x => x.Delete(new[] { 5, 3 }));
             Assert.AreEqual(5, p.RouteValues["ids[0]"]);
             Assert.AreEqual(3, p.RouteValues["ids[1]"]);
+        }
+
+        [TestMethod]
+        public void ShouldSupportAsyncActions()
+        {
+            var p = RoutesHelper.GetRouteParameters<FakeController>(x => x.ActionAsync());
+            Assert.AreEqual("Action", p.ActionName);
         }
     }
 }

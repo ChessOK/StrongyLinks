@@ -6,7 +6,7 @@ using ChessOk.StrongyLinks;
 namespace StrongyLinks.Tests
 {
     [AreaName("FakeArea")]
-    public class AnotherFake : Controller
+    public class AnotherFakeController : Controller
     {
         public ActionResult Index()
         {

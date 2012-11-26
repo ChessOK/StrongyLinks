@@ -30,25 +30,54 @@ namespace ChessOk.StrongyLinks.Internals
 
         private static ActionDescriptor CreateDescriptor<TController>(MethodCallExpression expression)
         {
-            // Determine controller action name, it can be overriden.
-            var actionNameAttribute =
-                expression.Method.GetCustomAttributes(typeof(ActionNameAttribute), true).SingleOrDefault() as ActionNameAttribute;
-
-            var actionName = actionNameAttribute != null ? actionNameAttribute.Name : expression.Method.Name;
-
-            // Determine controller name. Hm... it can be buggy...
-            var controllerName = typeof(TController).Name.Replace("Controller", String.Empty);
+            var controllerName = GetControllerName<TController>();
+            var actionName = GetActionName(expression);
 
             // Determine area name.
             var areaNameAttributes = typeof(TController).GetCustomAttributes(typeof(AreaNameAttribute), true);
             var areaName = areaNameAttributes.Length > 0 ? ((AreaNameAttribute)areaNameAttributes[0]).AreaName : String.Empty;
 
             return new ActionDescriptor
+            {
+                ActionName = actionName,
+                AreaName = areaName,
+                ControllerName = controllerName
+            };
+        }
+
+        private static string GetControllerName<TController>()
+        {
+            var controllerTypeName = typeof(TController).Name;
+
+            if (!controllerTypeName.EndsWith("Controller"))
+            {
+                throw new InvalidOperationException();
+            }
+
+            return controllerTypeName.Substring(0, controllerTypeName.Length - "Controller".Length);
+        }
+
+        private static string GetActionName(MethodCallExpression expression)
+        {
+            // Determine controller action name, it can be overriden.
+            var actionNameAttribute =
+                expression.Method.GetCustomAttributes(typeof(ActionNameAttribute), true).SingleOrDefault() as
+                ActionNameAttribute;
+
+            string actionName;
+            if (actionNameAttribute == null)
+            {
+                actionName = expression.Method.Name;
+                if (actionName.EndsWith("Async", StringComparison.OrdinalIgnoreCase))
                 {
-                    ActionName = actionName,
-                    AreaName = areaName,
-                    ControllerName = controllerName
-                };
+                    actionName = actionName.Substring(0, actionName.Length - "Async".Length);
+                }
+            }
+            else
+            {
+                actionName = actionNameAttribute.Name;
+            }
+            return actionName;
         }
 
         private static string GetExpressionFingerprint<TController>(MethodCallExpression expression)

@@ -19,5 +19,10 @@ namespace StrongyLinks.Tests
         {
             throw new NotSupportedException();
         }
+
+        public ActionResult ActionAsync()
+        {
+            throw new NotSupportedException();
+        }
     }
 }
