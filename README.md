@@ -15,7 +15,7 @@ adding new parameters and deleting existing.
 * You can move controllers to areas without need to add new "area" parameter for links.
 
 **Cons.**
-Slight performance penalty (see below).
+Performance penalty (see below).
 
 Performance
 --------------
